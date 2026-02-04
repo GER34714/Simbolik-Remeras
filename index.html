@@ -4,766 +4,245 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Simbolik — Remeras con vida propia</title>
-  <meta name="description" content="Simbolik: remeras con identidad, diseños únicos en DTF. Envíos a todo el país." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Simbolik — Remeras con vida propia" />
-  <meta property="og:description" content="Diseños únicos en DTF. Envíos a todo el país." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://iili.io/ftTgQQn.jpg" />
-  <meta property="og:url" content="#" />
-  <meta name="theme-color" content="#0f0f0f"/>
+  <title>Simbolik — Remeras con identidad</title>
 
   <style>
-    /* =========================
-       TIPOGRAFÍA (LOCAL)
-       Poné el archivo "Regothic Medieval.ttf" en la MISMA carpeta que este index.html
-       ========================= */
     @font-face{
-      font-family: "RegothicMedieval";
-      src: url("Regothic Medieval.ttf") format("truetype");
-      font-display: swap;
+      font-family:"RegothicMedieval";
+      src:url("Regothic Medieval.ttf") format("truetype");
+      font-display:swap;
     }
 
     :root{
       --text:#f3f3f3;
       --muted:#bdbdbd;
       --accent:#d4b36b;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --max: 1200px;
-      --glass: rgba(0,0,0,.56);
-      --stroke: rgba(255,255,255,.12);
-      --blur: blur(14px);
+      --glass:rgba(0,0,0,.55);
+      --stroke:rgba(255,255,255,.12);
+      --radius:18px;
+      --blur:blur(14px);
+      --shadow:0 18px 60px rgba(0,0,0,.55);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    html{scroll-behavior:smooth}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
     body{
       background:
-        linear-gradient(180deg, rgba(0,0,0,.78), rgba(0,0,0,.92)),
-        url("https://iili.io/ftlNYXI.jpg") center / cover no-repeat fixed;
+        linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,.92)),
+        url("https://iili.io/ftlNYXI.jpg") center/cover fixed;
       color:var(--text);
-      line-height:1.5;
       overflow-x:hidden;
-      padding-bottom: 120px;
-    }
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background:
-        radial-gradient(900px 420px at 50% 0%, rgba(212,179,107,.12), transparent 60%),
-        radial-gradient(720px 420px at 12% 22%, rgba(120,80,180,.11), transparent 60%),
-        radial-gradient(720px 420px at 88% 22%, rgba(0,180,170,.10), transparent 60%);
-      pointer-events:none;
-      z-index:-1;
+      padding-bottom:120px;
     }
 
-    a{color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+    .wrap{max-width:1200px;margin:auto;padding:0 20px}
 
-    /* NAV */
-    .nav{
-      position:sticky;top:0;z-index:50;
-      background: rgba(0,0,0,.60);
-      backdrop-filter: var(--blur);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .nav .inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:12px 0;
-      gap:12px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;text-decoration:none;
-      min-width: 190px;
-      flex: 0 0 auto;
-    }
-    .brand .logo{
-      width:44px;height:44px;border-radius:12px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      overflow:hidden;
-      flex: 0 0 auto;
-    }
-    .brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    .brand .t{display:flex;flex-direction:column;line-height:1.1}
-    .brand .t b{letter-spacing:.6px}
-    .brand .t span{color:var(--muted);font-size:.86rem}
-
-    .menu{
-      display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-    .menu a{
-      text-decoration:none;
-      color:var(--muted);
-      font-size:.95rem;
-      padding:8px 10px;
-      border-radius:12px;
-      transition:.25s;
-      white-space:nowrap;
-    }
-    .menu a:hover{color:var(--text);background:rgba(255,255,255,.06)}
-
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 16px;
-      border-radius:999px;
-      text-decoration:none;
-      background: linear-gradient(180deg, rgba(212,179,107,.95), rgba(212,179,107,.75));
-      color:#0b0b0c;
-      font-weight:800;
-      box-shadow: 0 14px 35px rgba(212,179,107,.22);
-      border:1px solid rgba(255,255,255,.18);
-      transition:.2s;
-      white-space:nowrap;
-      flex: 0 0 auto;
-    }
-    .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
-
-    .ghost{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      text-decoration:none;
-      transition:.2s;
-      white-space:nowrap;
-    }
-    .ghost:hover{background:rgba(255,255,255,.07);transform:translateY(-1px)}
-
-    /* HERO */
     header{
-      min-height: calc(100vh - 68px);
-      display:flex;align-items:center;
-      padding:54px 0 26px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
     }
+
     .hero{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:18px;
-      align-items:center;
+      grid-template-columns:1.1fr .9fr;
+      gap:20px;
       width:100%;
     }
+
     .heroCard{
-      background: var(--glass);
+      background:var(--glass);
       border:1px solid var(--stroke);
-      border-radius: var(--radius);
+      border-radius:var(--radius);
       padding:28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: var(--blur);
-      position:relative;
-      overflow:hidden;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute;inset:-2px;
-      background:
-        radial-gradient(700px 280px at 20% 0%, rgba(212,179,107,.18), transparent 60%),
-        radial-gradient(650px 280px at 85% 10%, rgba(0,180,170,.14), transparent 65%);
-      pointer-events:none;
-      opacity:.7;
-    }
-    .heroCard > *{position:relative;z-index:1}
-
-    .kicker{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--muted);
-      width:fit-content;
-      font-size:.92rem;
-      margin-bottom:14px;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 16px rgba(212,179,107,.55);
+      backdrop-filter:var(--blur);
+      box-shadow:var(--shadow);
     }
 
-    /* ====== ENCABEZADO PEDIDO ====== */
-    .heroTitle{
-      margin-bottom:12px;
-      line-height:1.02;
+    .brandRow{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
     }
-    .heroTitle .brandWord{
-      font-family: "RegothicMedieval", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      font-weight: 400;
-      letter-spacing: .8px;
-      display:block;
-      font-size: clamp(2.4rem, 7vw, 4.1rem);
-      color: var(--text);
-      text-transform:none;
-      word-break: break-word;
+
+    .heroLogo{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.15);
     }
-    .heroTitle .tagline{
-      display:block;
+
+    .brandWord{
+      font-family:"RegothicMedieval";
+      font-size:clamp(2.6rem,7vw,4.2rem);
+      letter-spacing:.8px;
+    }
+
+    .tagline{
       margin-top:8px;
-      font-size: clamp(1.55rem, 4.8vw, 2.25rem);
-      color: var(--accent);
-      letter-spacing: .25px;
-      line-height:1.08;
+      font-size:clamp(1.6rem,4.5vw,2.3rem);
+      color:var(--accent);
+      line-height:1.1;
     }
 
     .sub{
+      margin:16px 0 22px;
       color:var(--muted);
-      font-size:1.06rem;
-      max-width: 56ch;
-      margin-bottom:18px;
+      max-width:55ch;
     }
-    .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
 
-    .heroSide{display:grid;gap:12px;width:100%}
-    .mini{
-      background: rgba(0,0,0,.52);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.45);
-      backdrop-filter: var(--blur);
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
-    .mini b{display:block;margin-bottom:6px}
-    .mini p{color:var(--muted);font-size:.95rem}
 
-    /* SECTIONS */
-    section{padding:68px 0}
-    .title{text-align:center;font-size:clamp(1.65rem,4.4vw,2.1rem);margin-bottom:12px}
-    .lead{text-align:center;color:var(--muted);max-width:74ch;margin:0 auto 28px}
+    .btn{
+      padding:12px 18px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#e4c57a,#caa95f);
+      color:#000;
+      font-weight:700;
+      text-decoration:none;
+    }
 
-    /* REVEAL */
-    .reveal{opacity:0;transform:translateX(70px);filter:blur(6px);transition:opacity .65s ease,transform .65s ease,filter .65s ease}
-    .reveal.left{transform:translateX(-70px)}
-    .reveal.in{opacity:1;transform:translateX(0);filter:blur(0)}
+    section{padding:70px 0}
 
-    /* CARRUSEL */
     .carousel{
-      background: rgba(0,0,0,.52);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      background:var(--glass);
+      border-radius:var(--radius);
+      border:1px solid var(--stroke);
       overflow:hidden;
-      backdrop-filter: var(--blur);
-      width:100%;
     }
-    .viewport{overflow:hidden;width:100%;position:relative}
+
+    .viewport{overflow:hidden}
     .track{
       display:flex;
-      transform: translateX(0);
-      will-change: transform;
-      touch-action: pan-y;
-      user-select:none;
+      will-change:transform;
+      touch-action:pan-y;
     }
+
     .slide{
-      min-width: 100%;
+      min-width:100%;
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items:stretch;
+      grid-template-columns:1fr 1fr;
     }
-    .slideMedia{
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+
+    .slide img{
+      width:100%;
+      max-width:520px;
+      margin:auto;
+      border-radius:16px;
     }
-    .slideMedia img{
-      width: min(520px, 100%);
-      height: auto;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 14px 40px rgba(0,0,0,.55);
-      display:block;
-    }
+
     .slideInfo{
-      padding:22px;
+      padding:24px;
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap:10px;
-      min-width: 0;
-    }
-    .slideInfo h3{font-size:1.25rem;letter-spacing:.2px}
-    .slideInfo p{color:var(--muted)}
-    .pillRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
-    .pill{
-      font-size:.82rem;
-      color:rgba(255,255,255,.86);
-      padding:7px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      white-space:nowrap;
     }
 
-    .carControls{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 16px;
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.35);
-    }
-    .carBtn{
-      width:44px;height:44px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color:var(--text);
-      cursor:pointer;
-      display:inline-flex;align-items:center;justify-content:center;
-      transition:.2s;
-      touch-action: manipulation;
-    }
-    .carBtn:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
-    .carBtn:active{transform:translateY(0)}
-    .dots{display:flex;gap:8px;align-items:center;justify-content:center;flex:1}
-    .dotBtn{
-      width:9px;height:9px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.10);
-      cursor:pointer;
-      transition:.2s;
-    }
-    .dotBtn.active{
-      background: var(--accent);
-      border-color: rgba(212,179,107,.85);
-      box-shadow: 0 0 16px rgba(212,179,107,.45);
-      transform: scale(1.08);
-    }
-    .carMeta{color:var(--muted);font-size:.9rem;white-space:nowrap}
-
-    /* WHATSAPP FLOAT (SVG escalable) */
     .whatsapp{
       position:fixed;
-      right:16px;
-      bottom:16px;
-      width:64px;height:64px;
-      border-radius:999px;
+      right:max(12px,env(safe-area-inset-right));
+      bottom:max(12px,env(safe-area-inset-bottom));
+      width:60px;
+      height:60px;
       background:#25d366;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow: 0 18px 44px rgba(0,0,0,.55);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       z-index:100;
-      border:1px solid rgba(255,255,255,.22);
-      transition: transform .2s ease, filter .2s ease;
-      touch-action: manipulation;
     }
-    .whatsapp:hover{transform:translateY(-2px);filter:saturate(1.05)}
-    .whatsapp:active{transform:translateY(0)}
-    .whatsapp svg{width:30px;height:30px;display:block;fill:#fff}
 
-    /* FOOTER */
-    footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:34px 0 46px;
-      color:var(--muted);
-      text-align:center;
-      font-size:.92rem;
-    }
-    footer a{color:var(--accent);text-decoration:none}
+    .whatsapp svg{width:28px;height:28px;fill:#fff}
 
-    /* RESPONSIVE */
-    @media (max-width: 980px){
-      header{min-height:auto;padding:40px 0 18px}
+    @media(max-width:900px){
       .hero{grid-template-columns:1fr}
       .slide{grid-template-columns:1fr}
-      .slideInfo{padding:18px}
-      .slideMedia{padding:16px}
-    }
-    @media (max-width: 680px){
-      .menu{display:none}
-      .brand .t span{display:none}
-      .btn{padding:10px 14px}
-      .heroCard{padding:22px}
-      .whatsapp{width:58px;height:58px}
-      .whatsapp svg{width:28px;height:28px}
-      .carBtn{width:42px;height:42px}
-    }
-    @media (max-width: 420px){
-      .wrap{padding:0 16px}
-      .carMeta{display:none}
-      .heroCard,.mini,.carousel{border-radius:16px}
-      .slideMedia img{border-radius:14px}
-    }
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .track{transition:none}
     }
   </style>
 </head>
 
 <body>
 
-  <div class="nav">
-    <div class="wrap inner">
-      <a class="brand" href="#inicio" aria-label="Simbolik Home">
-        <div class="logo">
-          <img src="https://iili.io/ftT64Yx.jpg" alt="Simbolik logo">
-        </div>
-        <div class="t">
-          <b>Simbolik</b>
-          <span>Ropa con vida propia</span>
-        </div>
-      </a>
-
-      <nav class="menu" aria-label="Secciones">
-        <a href="#remeras">Remeras</a>
-        <a href="#envios">Envíos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-
-      <a class="btn" href="#contacto" aria-label="Ir a contacto">Pedir por WhatsApp</a>
+<header>
+  <div class="wrap hero">
+    <div class="heroCard">
+      <div class="brandRow">
+        <img class="heroLogo" src="https://iili.io/ftT64Yx.jpg">
+        <span class="brandWord">Simboli-k</span>
+      </div>
+      <div class="tagline">Remeras con identidad<br>y símbolo</div>
+      <p class="sub">Diseños únicos, carácter visual y presencia real.</p>
+      <div class="cta">
+        <a class="btn" href="#remeras">Ver remeras</a>
+      </div>
     </div>
   </div>
+</header>
 
-  <header id="inicio">
-    <div class="wrap hero">
-      <div class="heroCard reveal left">
-        <div class="kicker"><span class="dot"></span> Diseños únicos en DTF • Envíos a todo el país</div>
-
-        <!-- ENCABEZADO ACTUALIZADO -->
-        <div class="heroTitle">
-          <span class="brandWord">Simboli-k</span>
-          <span class="tagline">Remeras con identidad<br/>y símbolo</span>
-        </div>
-
-        <p class="sub">
-          Prendas que no son “una estampa más”: cada diseño tiene carácter, vibra y presencia.
-          Ideal para regalar o para vestirte con algo que diga algo.
-        </p>
-
-        <div class="ctaRow">
-          <a class="btn" href="#remeras">Ver ejemplos</a>
-          <a class="ghost" href="#envios">Cómo se envía</a>
-        </div>
-      </div>
-
-      <div class="heroSide">
-        <div class="mini reveal">
-          <b>Hecho para destacar</b>
-          <p>DTF nítido, colores intensos y buen aguante con el uso.</p>
-        </div>
-        <div class="mini reveal">
-          <b>Pedidos simples</b>
-          <p>Te pasamos talles, stock y opciones por WhatsApp en 1 minuto.</p>
-        </div>
-        <div class="mini reveal">
-          <b>Envío nacional</b>
-          <p>Se despacha por Correo Argentino a todo el país.</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="remeras">
-    <div class="wrap">
-      <h2 class="title reveal">Ejemplos de remeras</h2>
-      <p class="lead reveal">Carrusel automático + scroll con el dedo.</p>
-
-      <div class="carousel reveal left" aria-roledescription="carousel" aria-label="Carrusel de remeras">
-        <div class="viewport" id="viewport">
-          <div class="track" id="track">
-            <article class="slide" aria-label="1 de 3">
-              <div class="slideMedia">
-                <img src="https://iili.io/ftTgQQn.jpg" alt="Remera Simbolik - Símbolo Central">
-              </div>
-              <div class="slideInfo">
-                <h3>“Símbolo Central”</h3>
-                <p>Diseño protagonista, contraste fuerte y presencia. Ideal si querés que la remera hable por vos.</p>
-                <div class="pillRow">
-                  <span class="pill">DTF alta calidad</span>
-                  <span class="pill">Edición artística</span>
-                  <span class="pill">Alta presencia</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="slide" aria-label="2 de 3">
-              <div class="slideMedia">
-                <img src="https://iili.io/ftTgsIt.jpg" alt="Remera Simbolik - Arte & Actitud">
-              </div>
-              <div class="slideInfo">
-                <h3>“Arte & Actitud”</h3>
-                <p>Composición con energía visual, líneas marcadas y estilo único. Queda tremenda en negro o tonos oscuros.</p>
-                <div class="pillRow">
-                  <span class="pill">Diseño único</span>
-                  <span class="pill">Colores intensos</span>
-                  <span class="pill">DTF</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="slide" aria-label="3 de 3">
-              <div class="slideMedia">
-                <img src="https://iili.io/ftTgLhX.jpg" alt="Remera Simbolik - Mística Visual">
-              </div>
-              <div class="slideInfo">
-                <h3>“Mística Visual”</h3>
-                <p>Arte con detalle y aura simbólica. Si te gusta lo esotérico/creativo, esta es la indicada.</p>
-                <div class="pillRow">
-                  <span class="pill">Detalle fino</span>
-                  <span class="pill">Aura simbólica</span>
-                  <span class="pill">Edición limitada</span>
-                </div>
-              </div>
-            </article>
+<section id="remeras">
+  <div class="wrap">
+    <div class="carousel">
+      <div class="viewport" id="viewport">
+        <div class="track" id="track">
+          <div class="slide">
+            <img src="https://iili.io/ftTgQQn.jpg">
+            <div class="slideInfo">
+              <h3>Símbolo Central</h3>
+              <p>Diseño fuerte y protagonista.</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://iili.io/ftTgsIt.jpg">
+            <div class="slideInfo">
+              <h3>Arte & Actitud</h3>
+              <p>Estética marcada y urbana.</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://iili.io/ftTgLhX.jpg">
+            <div class="slideInfo">
+              <h3>Mística Visual</h3>
+              <p>Detalle artístico y aura simbólica.</p>
+            </div>
           </div>
         </div>
-
-        <div class="carControls" aria-label="Controles del carrusel">
-          <button class="carBtn" id="prevBtn" aria-label="Anterior">‹</button>
-
-          <div class="dots" role="tablist" aria-label="Puntos del carrusel">
-            <button class="dotBtn active" data-i="0" aria-label="Ir a 1" aria-current="true"></button>
-            <button class="dotBtn" data-i="1" aria-label="Ir a 2"></button>
-            <button class="dotBtn" data-i="2" aria-label="Ir a 3"></button>
-          </div>
-
-          <div class="carMeta" id="carMeta">1 / 3</div>
-
-          <button class="carBtn" id="nextBtn" aria-label="Siguiente">›</button>
-        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section><a class="whatsapp"
+   href="https://wa.me/5491111111111"
+   target="_blank"
+   aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32">
+    <path d="M19.11 17.2c-.27-.14-1.6-.79-1.84-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.48-.84-2.03-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.65 1.12 2.84c.14.18 1.93 2.95 4.67 4.13.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.82-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16 3C8.83 3 3 8.83 3 16c0 2.2.58 4.35 1.68 6.25L3.5 28.5l6.42-1.12A12.9 12.9 0 0 0 16 29c7.17 0 13-5.83 13-13S23.17 3 16 3z"/>
+  </svg>
+</a>
 
-  <!-- =========================
-PARTE 2/2 sigue abajo
-========================= --><!-- =========================
-PARTE 2/2 — index.html
-Pegá esta parte debajo de la PARTE 1
-========================= -->
+<script>
+(function(){
+  const track=document.getElementById('track');
+  const slides=[...track.children];
+  let i=0;
+  let startX=0,dx=0,down=false;
+  const auto=3000;
 
-  <section id="envios">
-    <div class="wrap">
-      <h2 class="title reveal left">Envíos</h2>
-      <p class="lead reveal">Despacho por Correo Argentino a todo el país. Te confirmamos costo y seguimiento al momento de pedir.</p>
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    track.style.transform=`translateX(-${i*100}%)`;
+  }
 
-      <div class="heroSide">
-        <div class="mini reveal left">
-          <b>Cómo comprar</b>
-          <p>1) Escribís por WhatsApp • 2) Elegís talle/modelo • 3) Confirmás y despachamos.</p>
-        </div>
-        <div class="mini reveal">
-          <b>Detalles</b>
-          <p>Embalaje cuidado, seguimiento del envío y atención personalizada.</p>
-        </div>
-        <div class="mini reveal">
-          <b>Tiempo</b>
-          <p>Te decimos tiempos reales según tu zona y el despacho del día.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  setInterval(()=>go(i+1),auto);
 
-  <section id="contacto">
-    <div class="wrap">
-      <h2 class="title reveal">Contacto</h2>
-      <p class="lead reveal">Consultanos por modelos, talles y tiempos de entrega.</p>
-
-      <div class="heroCard reveal left">
-        <div class="kicker"><span class="dot"></span> Respuesta rápida</div>
-        <p class="sub" style="margin-bottom:14px">Te pasamos stock, talles y opciones en minutos.</p>
-
-        <!-- CAMBIÁ ESTE NÚMERO POR EL REAL -->
-        <a class="btn"
-           href="https://wa.me/5491111111111?text=Hola!%20Quiero%20consultar%20por%20remeras%20Simbolik."
-           target="_blank" rel="noopener">
-          Escribir por WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © Simbolik — Ropa con vida propia<br/>
-    Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a>
-  </footer>
-
-  <a class="whatsapp"
-     href="https://wa.me/5491111111111?text=Hola!%20Quiero%20consultar%20por%20remeras%20Simbolik."
-     target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="sr-only">WhatsApp</span>
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-      <path d="M19.11 17.2c-.27-.14-1.6-.79-1.84-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.48-.84-2.03-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.98 2.65 1.12 2.84c.14.18 1.93 2.95 4.67 4.13.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.82-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16 3C8.83 3 3 8.83 3 16c0 2.2.58 4.35 1.68 6.25L3.5 28.5l6.42-1.12A12.9 12.9 0 0 0 16 29c7.17 0 13-5.83 13-13S23.17 3 16 3zm0 23.5c-2.02 0-3.98-.54-5.67-1.56l-.41-.24-3.81.66.66-3.72-.27-.43A10.96 10.96 0 0 1 5.5 16C5.5 10.2 10.2 5.5 16 5.5S26.5 10.2 26.5 16 21.8 26.5 16 26.5z"/>
-    </svg>
-  </a>
-
-  <script>
-    // Reveal desde laterales al scrollear
-    (function(){
-      const els = Array.from(document.querySelectorAll('.reveal'));
-      if (!('IntersectionObserver' in window) || els.length === 0){
-        els.forEach(el => el.classList.add('in'));
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting){
-            entry.target.classList.add('in');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.14 });
-      els.forEach(el => io.observe(el));
-    })();
-
-    // Carrusel: AUTO + swipe/drag + pausa en interacción + resume
-    (function(){
-      const viewport = document.getElementById('viewport');
-      const track = document.getElementById('track');
-      const slides = track ? Array.from(track.children) : [];
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const dots = Array.from(document.querySelectorAll('.dotBtn'));
-      const meta = document.getElementById('carMeta');
-
-      if (!viewport || !track || slides.length === 0) return;
-
-      let i = 0;
-      const total = slides.length;
-
-      const AUTO_MS = 3200;
-      const PAUSE_MS = 6000;
-      let timer = null;
-      let pauseTimer = null;
-
-      let isDown = false;
-      let startX = 0;
-      let deltaX = 0;
-      let startTranslate = 0;
-      let viewportW = 1;
-
-      function clampIndex(n){
-        if (n < 0) return total - 1;
-        if (n >= total) return 0;
-        return n;
-      }
-
-      function setTransition(on){
-        track.style.transition = on ? 'transform .45s ease' : 'none';
-      }
-
-      function translateToIndex(idx){
-        track.style.transform = `translateX(-${idx * 100}%)`;
-      }
-
-      function update(newIndex, withAnim=true){
-        i = clampIndex(newIndex);
-        setTransition(!!withAnim);
-        translateToIndex(i);
-
-        if (meta) meta.textContent = `${i + 1} / ${total}`;
-        dots.forEach((d, idx) => {
-          const active = idx === i;
-          d.classList.toggle('active', active);
-          d.setAttribute('aria-current', active ? 'true' : 'false');
-        });
-      }
-
-      function stopAuto(){
-        if (timer) { clearInterval(timer); timer = null; }
-      }
-
-      function startAuto(){
-        stopAuto();
-        timer = setInterval(() => update(i + 1, true), AUTO_MS);
-      }
-
-      function pauseAutoForInteraction(){
-        stopAuto();
-        if (pauseTimer) clearTimeout(pauseTimer);
-        pauseTimer = setTimeout(() => startAuto(), PAUSE_MS);
-      }
-
-      prevBtn && prevBtn.addEventListener('click', () => { update(i - 1, true); pauseAutoForInteraction(); });
-      nextBtn && nextBtn.addEventListener('click', () => { update(i + 1, true); pauseAutoForInteraction(); });
-
-      dots.forEach((d) => {
-        d.addEventListener('click', () => {
-          update(parseInt(d.dataset.i, 10), true);
-          pauseAutoForInteraction();
-        });
-      });
-
-      function getTranslateX(){
-        viewportW = viewport.getBoundingClientRect().width || 1;
-        return -i * viewportW;
-      }
-
-      function onDown(clientX){
-        isDown = true;
-        startX = clientX;
-        deltaX = 0;
-
-        viewportW = viewport.getBoundingClientRect().width || 1;
-        startTranslate = getTranslateX();
-
-        setTransition(false);
-        pauseAutoForInteraction();
-      }
-
-      function onMove(clientX){
-        if (!isDown) return;
-        deltaX = clientX - startX;
-
-        const maxLeft = 0;
-        const maxRight = -(total - 1) * viewportW;
-        let next = startTranslate + deltaX;
-
-        if (next > maxLeft) next = maxLeft + (next - maxLeft) * 0.25;
-        if (next < maxRight) next = maxRight + (next - maxRight) * 0.25;
-
-        track.style.transform = `translateX(${next}px)`;
-      }
-
-      function onUp(){
-        if (!isDown) return;
-        isDown = false;
-
-        const threshold = Math.max(40, viewportW * 0.12);
-        setTransition(true);
-
-        if (deltaX > threshold) update(i - 1, true);
-        else if (deltaX < -threshold) update(i + 1, true);
-        else update(i, true);
-      }
-
-      viewport.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), {passive:true});
-      viewport.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), {passive:true});
-      viewport.addEventListener('touchend', onUp, {passive:true});
-
-      viewport.addEventListener('pointerdown', (e) => {
-        if (e.pointerType === 'mouse') e.preventDefault();
-        viewport.setPointerCapture(e.pointerId);
-        onDown(e.clientX);
-      });
-      viewport.addEventListener('pointermove', (e) => onMove(e.clientX));
-      viewport.addEventListener('pointerup', onUp);
-      viewport.addEventListener('pointercancel', onUp);
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stopAuto();
-        else startAuto();
-      });
-
-      window.addEventListener('resize', () => {
-        update(i, false);
-      });
-
-      update(0, false);
-      startAuto();
-    })();
-  </script>
+  track.addEventListener('touchstart',e=>{down=true;startX=e.touches[0].clientX});
+  track.addEventListener('touchmove',e=>{if(down)dx=e.touches[0].clientX-startX});
+  track.addEventListener('touchend',()=>{if(dx>50)go(i-1);if(dx<-50)go(i+1);down=false;dx=0});
+})();
+</script>
 
 </body>
 </html>
-
