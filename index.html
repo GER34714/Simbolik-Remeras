@@ -1,5 +1,6 @@
 <!-- =========================
-PARTE 1/2 — index.html (MISMO CÓDIGO + ajuste WhatsApp para que NO quede pegado a la derecha en móviles)
+PARTE 1/2 — index.html
+MISMO CÓDIGO + FIX: la landing NO se “corre” al abrir (centrada y sin overflow horizontal)
 Pegá esta parte primero
 ========================= -->
 <!DOCTYPE html>
@@ -40,9 +41,24 @@ Pegá esta parte primero
       --glass: rgba(0,0,0,.56);
       --stroke: rgba(255,255,255,.12);
       --blur: blur(14px);
-
-      /* ===== Ajuste WhatsApp: margen seguro para NO quedar pegado a la derecha ===== */
       --wa-offset: 16px;
+    }
+
+    /* ===== FIX CENTRADO / OVERFLOW =====
+       - Evita que algo empuje el layout a la derecha
+       - Asegura ancho correcto en móviles
+    */
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+    body{
+      position:relative;
+    }
+    img, svg{
+      max-width:100%;
+      height:auto;
     }
 
     *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
@@ -53,7 +69,6 @@ Pegá esta parte primero
         url("https://iili.io/ftlNYXI.jpg") center / cover no-repeat fixed;
       color:var(--text);
       line-height:1.5;
-      overflow-x:hidden;
       padding-bottom: 120px;
     }
     body::before{
@@ -68,7 +83,12 @@ Pegá esta parte primero
     }
 
     a{color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px;
+      width:100%;
+    }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
     /* ====== FUENTE PARA TODAS LAS APARICIONES DE "Simbolik" ====== */
@@ -114,9 +134,7 @@ Pegá esta parte primero
         filter: saturate(1.05);
       }
     }
-    .neonLogo{
-      animation: neonPulse 2.3s ease-in-out infinite;
-    }
+    .neonLogo{ animation: neonPulse 2.3s ease-in-out infinite; }
 
     /* NAV */
     .nav{
@@ -124,11 +142,13 @@ Pegá esta parte primero
       background: rgba(0,0,0,.60);
       backdrop-filter: var(--blur);
       border-bottom:1px solid rgba(255,255,255,.08);
+      width:100%;
     }
     .nav .inner{
       display:flex;align-items:center;justify-content:space-between;
       padding:12px 0;
       gap:12px;
+      min-width:0; /* FIX: evita empujes laterales */
     }
     .brand{
       display:flex;align-items:center;gap:12px;text-decoration:none;
@@ -143,7 +163,7 @@ Pegá esta parte primero
       flex: 0 0 auto;
     }
     .brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    .brand .t{display:flex;flex-direction:column;line-height:1.1}
+    .brand .t{display:flex;flex-direction:column;line-height:1.1;min-width:0}
     .brand .t b{letter-spacing:.6px}
     .brand .t span{color:var(--muted);font-size:.86rem}
 
@@ -176,6 +196,7 @@ Pegá esta parte primero
       transition:.2s;
       white-space:nowrap;
       flex: 0 0 auto;
+      max-width:100%;
     }
     .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
 
@@ -188,6 +209,7 @@ Pegá esta parte primero
       text-decoration:none;
       transition:.2s;
       white-space:nowrap;
+      max-width:100%;
     }
     .ghost:hover{background:rgba(255,255,255,.07);transform:translateY(-1px)}
 
@@ -196,6 +218,7 @@ Pegá esta parte primero
       min-height: calc(100vh - 68px);
       display:flex;align-items:center;
       padding:54px 0 26px;
+      width:100%;
     }
     .hero{
       display:grid;
@@ -203,6 +226,7 @@ Pegá esta parte primero
       gap:18px;
       align-items:center;
       width:100%;
+      min-width:0; /* FIX */
     }
     .heroCard{
       background: var(--glass);
@@ -213,6 +237,7 @@ Pegá esta parte primero
       backdrop-filter: var(--blur);
       position:relative;
       overflow:hidden;
+      min-width:0; /* FIX */
     }
     .heroCard:before{
       content:"";
@@ -235,11 +260,13 @@ Pegá esta parte primero
       width:fit-content;
       font-size:.92rem;
       margin-bottom:14px;
+      max-width:100%;
     }
     .dot{
       width:10px;height:10px;border-radius:50%;
       background: var(--accent);
       box-shadow: 0 0 16px rgba(212,179,107,.55);
+      flex:0 0 auto;
     }
 
     /* ENCABEZADO: FUENTE + LOGO PRINCIPAL */
@@ -249,6 +276,7 @@ Pegá esta parte primero
       align-items:center;
       gap:12px;
       flex-wrap:wrap;
+      min-width:0;
     }
     .heroLogo{
       width: clamp(42px, 7vw, 64px);
@@ -265,6 +293,7 @@ Pegá esta parte primero
       text-transform:none;
       word-break: break-word;
       line-height: .98;
+      max-width:100%;
     }
     .tagline{
       display:block;
@@ -282,9 +311,9 @@ Pegá esta parte primero
       max-width: 56ch;
       margin-bottom:18px;
     }
-    .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+    .ctaRow{display:flex;gap:12px;flex-wrap:wrap;max-width:100%}
 
-    .heroSide{display:grid;gap:12px;width:100%}
+    .heroSide{display:grid;gap:12px;width:100%;min-width:0}
     .mini{
       background: rgba(0,0,0,.52);
       border:1px solid rgba(255,255,255,.12);
@@ -292,12 +321,13 @@ Pegá esta parte primero
       padding:16px;
       box-shadow: 0 12px 40px rgba(0,0,0,.45);
       backdrop-filter: var(--blur);
+      min-width:0;
     }
     .mini b{display:block;margin-bottom:6px}
     .mini p{color:var(--muted);font-size:.95rem}
 
     /* SECTIONS */
-    section{padding:68px 0}
+    section{padding:68px 0;width:100%}
     .title{text-align:center;font-size:clamp(1.65rem,4.4vw,2.1rem);margin-bottom:12px}
     .lead{text-align:center;color:var(--muted);max-width:74ch;margin:0 auto 28px}
 
@@ -315,6 +345,7 @@ Pegá esta parte primero
       overflow:hidden;
       backdrop-filter: var(--blur);
       width:100%;
+      max-width:100%;
     }
     .viewport{overflow:hidden;width:100%;position:relative}
     .track{
@@ -323,18 +354,21 @@ Pegá esta parte primero
       will-change: transform;
       touch-action: pan-y;
       user-select:none;
+      max-width:100%;
     }
     .slide{
       min-width: 100%;
       display:grid;
       grid-template-columns: 1.05fr .95fr;
       align-items:stretch;
+      min-width:100%;
     }
     .slideMedia{
       padding:18px;
       display:flex;
       align-items:center;
       justify-content:center;
+      min-width:0;
     }
     .slideMedia img{
       width: min(520px, 100%);
@@ -353,6 +387,7 @@ Pegá esta parte primero
       justify-content:center;
       gap:10px;
       min-width: 0;
+      overflow-wrap:anywhere; /* FIX: no empuja al costado */
     }
     .slideInfo h3{font-size:1.25rem;letter-spacing:.2px}
     .slideInfo p{color:var(--muted)}
@@ -375,6 +410,8 @@ Pegá esta parte primero
       padding:14px 16px;
       border-top:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.35);
+      width:100%;
+      max-width:100%;
     }
     .carBtn{
       width:44px;height:44px;
@@ -386,16 +423,18 @@ Pegá esta parte primero
       display:inline-flex;align-items:center;justify-content:center;
       transition:.2s;
       touch-action: manipulation;
+      flex:0 0 auto;
     }
     .carBtn:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
     .carBtn:active{transform:translateY(0)}
-    .dots{display:flex;gap:8px;align-items:center;justify-content:center;flex:1}
+    .dots{display:flex;gap:8px;align-items:center;justify-content:center;flex:1;min-width:0}
     .dotBtn{
       width:9px;height:9px;border-radius:999px;
       border:1px solid rgba(255,255,255,.25);
       background: rgba(255,255,255,.10);
       cursor:pointer;
       transition:.2s;
+      flex:0 0 auto;
     }
     .dotBtn.active{
       background: var(--accent);
@@ -403,12 +442,9 @@ Pegá esta parte primero
       box-shadow: 0 0 16px rgba(212,179,107,.45);
       transform: scale(1.08);
     }
-    .carMeta{color:var(--muted);font-size:.9rem;white-space:nowrap}
+    .carMeta{color:var(--muted);font-size:.9rem;white-space:nowrap;flex:0 0 auto}
 
-    /* =========================
-       WHATSAPP FLOAT
-       (MISMO DISEÑO + offset para que NO quede "pegado a la derecha")
-       ========================= */
+    /* WHATSAPP FLOAT */
     .whatsapp{
       position:fixed;
       right: calc(var(--wa-offset) + env(safe-area-inset-right));
@@ -434,6 +470,7 @@ Pegá esta parte primero
       color:var(--muted);
       text-align:center;
       font-size:.92rem;
+      width:100%;
     }
     footer a{color:var(--accent);text-decoration:none}
 
@@ -446,9 +483,7 @@ Pegá esta parte primero
       .slideMedia{padding:16px}
     }
     @media (max-width: 680px){
-      /* Más margen en celulares para que NO quede al borde */
       :root{ --wa-offset: 18px; }
-
       .menu{display:none}
       .brand .t span{display:none}
       .btn{padding:10px 14px}
@@ -459,9 +494,7 @@ Pegá esta parte primero
       .brandRow{gap:10px}
     }
     @media (max-width: 420px){
-      /* Todavía más margen en pantallas muy chicas */
       :root{ --wa-offset: 20px; }
-
       .wrap{padding:0 16px}
       .carMeta{display:none}
       .heroCard,.mini,.carousel{border-radius:16px}
@@ -471,7 +504,6 @@ Pegá esta parte primero
     @media (max-width: 360px){
       :root{ --wa-offset: 22px; }
     }
-
     @media (prefers-reduced-motion: reduce){
       .reveal{transition:none}
       .track{transition:none}
@@ -619,8 +651,7 @@ Pegá esta parte primero
 
   <!-- =========================
 PARTE 2/2 sigue abajo
-========================= -->
-<!-- =========================
+========================= --><!-- =========================
 PARTE 2/2 — index.html
 Pegá esta parte debajo de la PARTE 1
 ========================= -->
@@ -850,3 +881,4 @@ Pegá esta parte debajo de la PARTE 1
 
 </body>
 </html>
+
