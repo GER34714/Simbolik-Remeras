@@ -1,3 +1,8 @@
+<!-- =========================
+PARTE 1/2 — index.html
+RESPONSIVE + OVERLAY + CARRUSEL AUTO + SWIPE (DEDO)
+Pegá esta parte primero
+========================= -->
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -17,7 +22,6 @@
 
   <style>
     :root{
-      --bg:#0b0b0c;
       --text:#f3f3f3;
       --muted:#bdbdbd;
       --accent:#d4b36b;
@@ -32,14 +36,13 @@
     *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
     html{scroll-behavior:smooth}
     body{
-      /* overlay de fondo */
       background:
         linear-gradient(180deg, rgba(0,0,0,.78), rgba(0,0,0,.92)),
         url("https://iili.io/ftlNYXI.jpg") center / cover no-repeat fixed;
       color:var(--text);
       line-height:1.5;
       overflow-x:hidden;
-      padding-bottom: 120px; /* para que el WhatsApp no tape el footer */
+      padding-bottom: 120px; /* para que WhatsApp no tape footer */
     }
     body::before{
       content:"";
@@ -70,7 +73,8 @@
     }
     .brand{
       display:flex;align-items:center;gap:12px;text-decoration:none;
-      min-width: 200px;
+      min-width: 190px;
+      flex: 0 0 auto;
     }
     .brand .logo{
       width:44px;height:44px;border-radius:12px;
@@ -84,7 +88,11 @@
     .brand .t b{letter-spacing:.6px}
     .brand .t span{color:var(--muted);font-size:.86rem}
 
-    .menu{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+    .menu{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
     .menu a{
       text-decoration:none;
       color:var(--muted);
@@ -108,6 +116,7 @@
       border:1px solid rgba(255,255,255,.18);
       transition:.2s;
       white-space:nowrap;
+      flex: 0 0 auto;
     }
     .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
 
@@ -134,6 +143,7 @@
       grid-template-columns: 1.1fr .9fr;
       gap:18px;
       align-items:center;
+      width:100%;
     }
     .heroCard{
       background: var(--glass);
@@ -177,6 +187,7 @@
       line-height:1.04;
       letter-spacing:.6px;
       margin-bottom:12px;
+      word-break: break-word;
     }
     h1 span{color:var(--accent)}
     .sub{
@@ -187,9 +198,7 @@
     }
     .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
 
-    .heroSide{
-      display:grid;gap:12px;
-    }
+    .heroSide{display:grid;gap:12px;width:100%}
     .mini{
       background: rgba(0,0,0,.52);
       border:1px solid rgba(255,255,255,.12);
@@ -219,44 +228,60 @@
       box-shadow: var(--shadow);
       overflow:hidden;
       backdrop-filter: var(--blur);
+      width:100%;
     }
+
+    .viewport{
+      overflow:hidden;
+      width:100%;
+      position:relative;
+    }
+
     .track{
       display:flex;
-      transition: transform .45s ease;
+      transform: translateX(0);
       will-change: transform;
       touch-action: pan-y;
+      user-select:none;
     }
+
     .slide{
       min-width: 100%;
       display:grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:0;
+      align-items:stretch;
     }
+
     .slideMedia{
-      background: rgba(255,255,255,.04);
+      padding:18px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
     }
+
+    /* clave responsive: imagen nunca se sale del viewport */
     .slideMedia img{
-      width:100%;
-      max-width:520px;
+      width: min(520px, 100%);
+      height: auto;
       aspect-ratio: 4 / 5;
-      object-fit:cover;
+      object-fit: cover;
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.10);
       box-shadow: 0 14px 40px rgba(0,0,0,.55);
+      display:block;
     }
+
     .slideInfo{
       padding:22px;
       display:flex;
       flex-direction:column;
       justify-content:center;
       gap:10px;
+      min-width: 0;
     }
     .slideInfo h3{font-size:1.25rem;letter-spacing:.2px}
     .slideInfo p{color:var(--muted)}
+
     .pillRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
     .pill{
       font-size:.82rem;
@@ -304,13 +329,9 @@
       box-shadow: 0 0 16px rgba(212,179,107,.45);
       transform: scale(1.08);
     }
-    .carMeta{
-      color:var(--muted);
-      font-size:.9rem;
-      white-space:nowrap;
-    }
+    .carMeta{color:var(--muted);font-size:.9rem;white-space:nowrap}
 
-    /* WHATSAPP FLOAT (ADAPTABLE) */
+    /* WHATSAPP FLOAT (SVG escalable) */
     .whatsapp{
       position:fixed;
       right:16px;
@@ -327,11 +348,7 @@
     }
     .whatsapp:hover{transform:translateY(-2px);filter:saturate(1.05)}
     .whatsapp:active{transform:translateY(0)}
-    .whatsapp svg{
-      width:30px;height:30px;
-      display:block;
-      fill:#fff;
-    }
+    .whatsapp svg{width:30px;height:30px;display:block;fill:#fff}
 
     /* FOOTER */
     footer{
@@ -348,9 +365,8 @@
       header{min-height:auto;padding:40px 0 18px}
       .hero{grid-template-columns:1fr}
       .slide{grid-template-columns:1fr}
-      .slideMedia{padding:16px}
-      .slideMedia img{max-width:520px}
       .slideInfo{padding:18px}
+      .slideMedia{padding:16px}
     }
     @media (max-width: 680px){
       .menu{display:none}
@@ -364,10 +380,8 @@
     @media (max-width: 420px){
       .wrap{padding:0 16px}
       .carMeta{display:none}
+      .heroCard,.mini,.carousel{border-radius:16px}
       .slideMedia img{border-radius:14px}
-      .heroCard{border-radius:16px}
-      .mini{border-radius:16px}
-      .carousel{border-radius:16px}
     }
     @media (prefers-reduced-motion: reduce){
       .reveal{transition:none}
@@ -397,9 +411,7 @@
         <a href="#contacto">Contacto</a>
       </nav>
 
-      <a class="btn" href="#contacto" aria-label="Ir a contacto">
-        Pedir por WhatsApp <small>→</small>
-      </a>
+      <a class="btn" href="#contacto" aria-label="Ir a contacto">Pedir por WhatsApp</a>
     </div>
   </div>
 
@@ -436,61 +448,60 @@
     </div>
   </header>
 
-  <!-- SECTION: REMERAS (CARRUSEL) -->
+  <!-- SECTION: REMERAS (CARRUSEL AUTO + SWIPE) -->
   <section id="remeras">
     <div class="wrap">
       <h2 class="title reveal">Ejemplos de remeras</h2>
-      <p class="lead reveal">Carrusel demo con tus 3 diseños reales.</p>
+      <p class="lead reveal">Carrusel automático + scroll con el dedo.</p>
 
       <div class="carousel reveal left" aria-roledescription="carousel" aria-label="Carrusel de remeras">
-        <div class="track" id="track">
-          <!-- SLIDE 1 -->
-          <article class="slide" aria-label="1 de 3">
-            <div class="slideMedia">
-              <img src="https://iili.io/ftTgQQn.jpg" alt="Remera Simbolik - Símbolo Central">
-            </div>
-            <div class="slideInfo">
-              <h3>“Símbolo Central”</h3>
-              <p>Diseño protagonista, contraste fuerte y presencia. Ideal si querés que la remera hable por vos.</p>
-              <div class="pillRow">
-                <span class="pill">DTF alta calidad</span>
-                <span class="pill">Edición artística</span>
-                <span class="pill">Alta presencia</span>
+        <div class="viewport" id="viewport">
+          <div class="track" id="track">
+            <article class="slide" aria-label="1 de 3">
+              <div class="slideMedia">
+                <img src="https://iili.io/ftTgQQn.jpg" alt="Remera Simbolik - Símbolo Central">
               </div>
-            </div>
-          </article>
+              <div class="slideInfo">
+                <h3>“Símbolo Central”</h3>
+                <p>Diseño protagonista, contraste fuerte y presencia. Ideal si querés que la remera hable por vos.</p>
+                <div class="pillRow">
+                  <span class="pill">DTF alta calidad</span>
+                  <span class="pill">Edición artística</span>
+                  <span class="pill">Alta presencia</span>
+                </div>
+              </div>
+            </article>
 
-          <!-- SLIDE 2 -->
-          <article class="slide" aria-label="2 de 3">
-            <div class="slideMedia">
-              <img src="https://iili.io/ftTgsIt.jpg" alt="Remera Simbolik - Arte & Actitud">
-            </div>
-            <div class="slideInfo">
-              <h3>“Arte & Actitud”</h3>
-              <p>Composición con energía visual, líneas marcadas y estilo único. Queda tremenda en negro o tonos oscuros.</p>
-              <div class="pillRow">
-                <span class="pill">Diseño único</span>
-                <span class="pill">Colores intensos</span>
-                <span class="pill">DTF</span>
+            <article class="slide" aria-label="2 de 3">
+              <div class="slideMedia">
+                <img src="https://iili.io/ftTgsIt.jpg" alt="Remera Simbolik - Arte & Actitud">
               </div>
-            </div>
-          </article>
+              <div class="slideInfo">
+                <h3>“Arte & Actitud”</h3>
+                <p>Composición con energía visual, líneas marcadas y estilo único. Queda tremenda en negro o tonos oscuros.</p>
+                <div class="pillRow">
+                  <span class="pill">Diseño único</span>
+                  <span class="pill">Colores intensos</span>
+                  <span class="pill">DTF</span>
+                </div>
+              </div>
+            </article>
 
-          <!-- SLIDE 3 -->
-          <article class="slide" aria-label="3 de 3">
-            <div class="slideMedia">
-              <img src="https://iili.io/ftTgLhX.jpg" alt="Remera Simbolik - Mística Visual">
-            </div>
-            <div class="slideInfo">
-              <h3>“Mística Visual”</h3>
-              <p>Arte con detalle y aura simbólica. Si te gusta lo esotérico/creativo, esta es la indicada.</p>
-              <div class="pillRow">
-                <span class="pill">Detalle fino</span>
-                <span class="pill">Aura simbólica</span>
-                <span class="pill">Edición limitada</span>
+            <article class="slide" aria-label="3 de 3">
+              <div class="slideMedia">
+                <img src="https://iili.io/ftTgLhX.jpg" alt="Remera Simbolik - Mística Visual">
               </div>
-            </div>
-          </article>
+              <div class="slideInfo">
+                <h3>“Mística Visual”</h3>
+                <p>Arte con detalle y aura simbólica. Si te gusta lo esotérico/creativo, esta es la indicada.</p>
+                <div class="pillRow">
+                  <span class="pill">Detalle fino</span>
+                  <span class="pill">Aura simbólica</span>
+                  <span class="pill">Edición limitada</span>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
 
         <div class="carControls" aria-label="Controles del carrusel">
@@ -512,8 +523,10 @@
 
   <!-- =========================
 PARTE 2/2 sigue abajo
-========================= --><!-- =========================
+========================= -->
+<!-- =========================
 PARTE 2/2 — index.html
+AUTO (INTERVALO) + SWIPE/DRAG + PAUSA EN INTERACCIÓN
 Pegá esta parte debajo de la PARTE 1
 ========================= -->
 
@@ -552,7 +565,7 @@ Pegá esta parte debajo de la PARTE 1
         <a class="btn"
            href="https://wa.me/5491111111111?text=Hola!%20Quiero%20consultar%20por%20remeras%20Simbolik."
            target="_blank" rel="noopener">
-          Escribir por WhatsApp <small>→</small>
+          Escribir por WhatsApp
         </a>
       </div>
     </div>
@@ -589,12 +602,12 @@ Pegá esta parte debajo de la PARTE 1
           }
         });
       }, { threshold: 0.14 });
-
       els.forEach(el => io.observe(el));
     })();
 
-    // Carrusel: botones + dots + swipe
+    // Carrusel: AUTO + swipe/drag + pausa en interacción + resume
     (function(){
+      const viewport = document.getElementById('viewport');
       const track = document.getElementById('track');
       const slides = track ? Array.from(track.children) : [];
       const prevBtn = document.getElementById('prevBtn');
@@ -602,10 +615,23 @@ Pegá esta parte debajo de la PARTE 1
       const dots = Array.from(document.querySelectorAll('.dotBtn'));
       const meta = document.getElementById('carMeta');
 
-      if (!track || slides.length === 0) return;
+      if (!viewport || !track || slides.length === 0) return;
 
       let i = 0;
       const total = slides.length;
+
+      const AUTO_MS = 3200;      // velocidad del auto-carrusel
+      const PAUSE_MS = 6000;     // cuánto pausa después de interacción
+      let timer = null;
+      let pauseTimer = null;
+
+      // drag/swipe state
+      let isDown = false;
+      let startX = 0;
+      let currentX = 0;
+      let deltaX = 0;
+      let startTranslate = 0;
+      let viewportW = 1;
 
       function clampIndex(n){
         if (n < 0) return total - 1;
@@ -613,9 +639,19 @@ Pegá esta parte debajo de la PARTE 1
         return n;
       }
 
-      function update(newIndex){
+      function setTransition(on){
+        track.style.transition = on ? 'transform .45s ease' : 'none';
+      }
+
+      function translateToIndex(idx){
+        track.style.transform = `translateX(-${idx * 100}%)`;
+      }
+
+      function update(newIndex, withAnim=true){
         i = clampIndex(newIndex);
-        track.style.transform = `translateX(-${i * 100}%)`;
+        setTransition(!!withAnim);
+        translateToIndex(i);
+
         if (meta) meta.textContent = `${i + 1} / ${total}`;
         dots.forEach((d, idx) => {
           const active = idx === i;
@@ -624,40 +660,110 @@ Pegá esta parte debajo de la PARTE 1
         });
       }
 
-      prevBtn && prevBtn.addEventListener('click', () => update(i - 1));
-      nextBtn && nextBtn.addEventListener('click', () => update(i + 1));
+      function stopAuto(){
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      function startAuto(){
+        stopAuto();
+        timer = setInterval(() => update(i + 1, true), AUTO_MS);
+      }
+
+      function pauseAutoForInteraction(){
+        stopAuto();
+        if (pauseTimer) clearTimeout(pauseTimer);
+        pauseTimer = setTimeout(() => startAuto(), PAUSE_MS);
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => { update(i - 1, true); pauseAutoForInteraction(); });
+      nextBtn && nextBtn.addEventListener('click', () => { update(i + 1, true); pauseAutoForInteraction(); });
 
       dots.forEach((d) => {
-        d.addEventListener('click', () => update(parseInt(d.dataset.i, 10)));
+        d.addEventListener('click', () => {
+          update(parseInt(d.dataset.i, 10), true);
+          pauseAutoForInteraction();
+        });
       });
 
-      // Swipe (mobile)
-      let startX = 0, dx = 0, isDown = false;
+      // Helpers
+      function getTranslateX(){
+        // track transform = translateX(-N%)
+        // para drag usamos px: convertimos a px desde índice actual
+        viewportW = viewport.getBoundingClientRect().width || 1;
+        return -i * viewportW;
+      }
 
-      function onDown(x){
+      function onDown(clientX){
         isDown = true;
-        startX = x;
-        dx = 0;
+        startX = clientX;
+        currentX = clientX;
+        deltaX = 0;
+
+        viewportW = viewport.getBoundingClientRect().width || 1;
+        startTranslate = getTranslateX();
+
+        setTransition(false);
+        pauseAutoForInteraction();
       }
-      function onMove(x){
+
+      function onMove(clientX){
         if (!isDown) return;
-        dx = x - startX;
+        currentX = clientX;
+        deltaX = currentX - startX;
+
+        // resistencia en bordes
+        const maxLeft = 0;
+        const maxRight = -(total - 1) * viewportW;
+        let next = startTranslate + deltaX;
+
+        if (next > maxLeft) next = maxLeft + (next - maxLeft) * 0.25;
+        if (next < maxRight) next = maxRight + (next - maxRight) * 0.25;
+
+        track.style.transform = `translateX(${next}px)`;
       }
+
       function onUp(){
         if (!isDown) return;
         isDown = false;
 
-        const threshold = 40; // px
-        if (dx > threshold) update(i - 1);
-        else if (dx < -threshold) update(i + 1);
+        const threshold = Math.max(40, viewportW * 0.12); // swipe mínimo (px o %)
+        setTransition(true);
+
+        if (deltaX > threshold) update(i - 1, true);
+        else if (deltaX < -threshold) update(i + 1, true);
+        else update(i, true);
       }
 
-      track.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), {passive:true});
-      track.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), {passive:true});
-      track.addEventListener('touchend', onUp);
+      // Touch (dedo)
+      viewport.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), {passive:true});
+      viewport.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), {passive:true});
+      viewport.addEventListener('touchend', onUp, {passive:true});
 
-      // init
-      update(0);
+      // Pointer (mouse/pen) para drag en desktop
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse') e.preventDefault();
+        viewport.setPointerCapture(e.pointerId);
+        onDown(e.clientX);
+      });
+      viewport.addEventListener('pointermove', (e) => onMove(e.clientX));
+      viewport.addEventListener('pointerup', onUp);
+      viewport.addEventListener('pointercancel', onUp);
+
+      // Pausar auto cuando la pestaña no está visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAuto();
+        else startAuto();
+      });
+
+      // Recalcular al cambiar tamaño (mantener slide alineado)
+      window.addEventListener('resize', () => {
+        // fuerza al índice actual sin anim para no “saltar”
+        update(i, false);
+      });
+
+      // Init
+      update(0, false);
+      startAuto();
     })();
   </script>
 
